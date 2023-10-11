@@ -1,20 +1,33 @@
 class Solution {
-    public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int lastSort = m-1;
-        int j = 0;
-        while(j<n && j>-1){
-            int k = 0;
-            while(nums2[j]>nums1[k] && k>-1 && k<lastSort+1){
-            	k++;
-            }
-            for(int i = lastSort; i>=k && i<m+n-1; i--){
-                nums1[i+1] = nums1[i];
-                nums1[i] = 0;
-            }
-            lastSort++;
-            nums1[k] = nums2[j];
-            j++;
+    public void merge(int[] nums, int m, int[] two, int n) {
+        int one[] = new int[m];
+        for(int i = 0; i < m; i++){
+            one[i] = nums[i];
         }
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        while(i<m && j < n){
+            if(one[i] < two[j]){
+                nums[k] = one[i];
+                i++;
+                k++;
+            }else{
+                nums[k] = two[j];
+                j++;
+                k++;
+            }
 
+        }
+        while(j<n){
+            nums[k] = two[j];
+            j++;
+            k++;
+        }
+        while(i<m){
+            nums[k] = one[i];
+            i++;
+            k++;
+        }
     }
 }
