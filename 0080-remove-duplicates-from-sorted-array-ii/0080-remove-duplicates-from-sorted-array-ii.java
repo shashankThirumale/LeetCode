@@ -1,5 +1,6 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
+        int index = 0;
         LinkedHashMap<Integer, Integer> map = new LinkedHashMap<>();
         for(int i = 0; i < nums.length; i++){
             if(map.get(nums[i]) == null){
@@ -7,18 +8,12 @@ class Solution {
             }else{
                 map.put(nums[i], map.get(nums[i])+1);
             }
-        }
-        int index = 0;
-        for(Integer key: map.keySet()){
-            int freq = 2;
-            if(map.get(key) < 2){
-                freq = map.get(key);
-            }
-            for(int j = freq; j > 0; j--){
-                nums[index] = key;
+            if(map.get(nums[i]) < 3){
+                nums[index] = nums[i];
                 index++;
             }
         }
+        
         return index;
     }
     
