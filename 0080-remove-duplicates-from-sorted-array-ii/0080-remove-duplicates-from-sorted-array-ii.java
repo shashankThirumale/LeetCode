@@ -1,19 +1,22 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
         int index = 0;
-        LinkedHashMap<Integer, Integer> map = new LinkedHashMap<>();
+        int tracker = 0;
+        int currNum = nums[0];
         for(int i = 0; i < nums.length; i++){
-            if(map.get(nums[i]) == null){
-                map.put(nums[i], 1);
-            }else{
-                map.put(nums[i], map.get(nums[i])+1);
-            }
-            if(map.get(nums[i]) < 3){
+            if(nums[i] != currNum){
+                currNum = nums[i];
+                tracker = 1;
                 nums[index] = nums[i];
                 index++;
+            }else{
+                tracker++;
+                if(tracker < 3){
+                    nums[index] = nums[i];
+                    index++;
+                }
             }
         }
-        
         return index;
     }
     
