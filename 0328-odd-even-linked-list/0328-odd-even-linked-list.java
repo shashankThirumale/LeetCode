@@ -10,12 +10,12 @@
  */
 class Solution {
     public ListNode oddEvenList(ListNode head) {
+        if(head == null|| head.next == null){
+            return head;
+        }
         ArrayList<Integer> arr = new ArrayList<>();
         for(ListNode curr = head; curr != null; curr = curr.next){
             arr.add(curr.val);
-        }
-        if(arr.size() == 0 || arr.size() == 1){
-            return head;
         }
         ListNode result = new ListNode(arr.get(0));
         ListNode even = new ListNode(arr.get(1));
