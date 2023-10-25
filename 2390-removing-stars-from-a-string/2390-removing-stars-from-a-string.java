@@ -6,9 +6,7 @@ class Solution {
             if(chars[i] != '*'){
                 str.append(chars[i]);
             }else{
-                if(str.length() != 0){
-                    str.deleteCharAt(str.length()-1);
-                }
+                str.deleteCharAt(str.length()-1);
             }
         }
         return str.toString();
