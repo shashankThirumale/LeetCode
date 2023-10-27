@@ -19,7 +19,7 @@ class Node {
 
 class Solution {
     public List<Integer> postorder(Node root) {
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new LinkedList<Integer>();
         return helper(root, result);
     }
     public List<Integer> helper(Node root, List<Integer> list){
