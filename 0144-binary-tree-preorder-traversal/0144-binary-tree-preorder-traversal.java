@@ -15,7 +15,7 @@
  */
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        ArrayList<Integer> result = new ArrayList<>();
+        List<Integer> result = new LinkedList<>();
         return helper(root, result);
     }
     private static List<Integer> helper(TreeNode root, List<Integer> list){
