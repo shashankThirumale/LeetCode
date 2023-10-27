@@ -4,19 +4,19 @@ class Solution {
             return 1;
         }
         int max = 0;
-        HashSet<Character> set = new HashSet<>();
+        HashMap<Character, Integer> map = new HashMap<>();
         char[] ss = s.toCharArray();
         int start = 0;
         for(int i = 0; i < ss.length; i++){
-            if(set.contains(ss[i])){
+            if(map.containsKey(ss[i])){
                 if(i-start > max){
                     max = i-start;
                 }
-                i = start;
-                start++; 
-                set.clear();
+                i = map.get(ss[i]);
+                start = i+1;
+                map.clear();
             }else{
-                set.add(ss[i]);
+                map.put(ss[i], i);
             }
         }
         if(s.length()-start > max){
