@@ -1,26 +1,31 @@
 class Solution {
-    public boolean check(int[][] grid, int row, int column){
-        int n=grid.length;
-        for(int i=0; i<n; i++){
-            if(grid[i][row]!=grid[column][i]){
-                return false;
+    public int equalPairs(int[][] g) {
+		int n = g.length;
+        int res = 0;
+		//convert the numbers in each row to a single string
+        Map<String, Integer> sToFreq = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < n; j++) { 
+                sb.append(g[i][j]);
+                sb.append("+");
+            }
+            String s = sb.toString();
+            sToFreq.put(s, sToFreq.getOrDefault(s, 0) + 1);
+        }
+        
+		//convert the numbers in each col to string and find the matches
+        for (int j = 0; j < n; j++) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < n; i++) { 
+                sb.append(g[i][j]);
+                sb.append("+");
+            }
+            String s = sb.toString();
+            if (sToFreq.containsKey(s)) {
+                res += sToFreq.get(s);
             }
         }
-        return true;
-    }
-
-    public int equalPairs(int[][] grid) {
-        int ans=0;
-        int n=grid.length;
-        for(int i=0; i<n; i++){
-            for(int y=0; y<n; y++){
-                if(grid[0][i]==grid[y][0]){
-                    if(check(grid, i, y)){
-                        ans++;
-                    }
-                }
-            }
-        }
-        return ans;
+        return res;
     }
 }
