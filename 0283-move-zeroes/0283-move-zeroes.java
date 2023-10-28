@@ -1,29 +1,24 @@
 class Solution {
     public void moveZeroes(int[] nums) {
-        ArrayList<Integer> list = new ArrayList<Integer>();
+        int index = 0;
         for(int i = 0; i < nums.length; i++){
             if(nums[i]!=0){
-                list.add(nums[i]);
+                nums[index++] = nums[i];
             }
         }
-        int i = 0;
-        for(i = 0; i < list.size(); i++){
-            nums[i] = list.get(i);
-        }
-        while(i < nums.length){
-            nums[i] = 0;
-            i++;
+        while(index < nums.length){
+            nums[index++] = 0;
         }
     }
     /**
-    Have an ArrayList with numbers from the list that are not zeros
-    Then we traverse through the ArrayList and and add them to the nums array starting from the first element
-    the rest of the numbers will be zeros
+    We go though the list
+    We insert the numbers that are not zeros to the front of the array
+    We keep track of where to insert them with a variable
+    For the rest of the spaces in teh array we fill them up with a 0;
     
-    
-    TestCases:
-    [0,1,0,3,12]
-    list = [1,3,12]
-    
+    Test Cases:
+    nums = [1,3,12,0,10]
+    index = 4
+    i = 4
     */
 }
