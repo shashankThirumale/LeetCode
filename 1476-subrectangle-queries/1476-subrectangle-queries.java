@@ -13,10 +13,7 @@ class SubrectangleQueries {
     }
     
     public int getValue(int row, int col) {
-        if(row < rectangle.length && col < rectangle[0].length && row > -1 && col > -1){
-            return rectangle[row][col];
-        }
-        return 0;
+       return rectangle[row][col];
     }
 }
 
