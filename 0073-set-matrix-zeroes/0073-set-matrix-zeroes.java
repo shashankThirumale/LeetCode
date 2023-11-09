@@ -6,7 +6,15 @@ class Solution {
             for(int col = 0; col < matrix[0].length; col++){
                 if(matrix[row][col] == 0){
                     rows.add(row);
+                    break;
+                }
+            }
+        }
+        for(int col = 0; col < matrix[0].length; col++){
+            for(int row = 0; row < matrix.length; row++){
+                if(matrix[row][col] == 0){
                     cols.add(col);
+                    break;
                 }
             }
         }
