@@ -1,113 +1,47 @@
 class Solution {
-    public char[][] updateBoard(char[][] board, int[] click) {
-        int x = click[0];
-        int y = click[1];
-        if(board[x][y] == 'M'){
-            board[x][y] = 'X';
-        }else if(board[x][y] == 'E'){
-            int mines = numMines(board, x, y);
-            if(mines == 0){
-                board[x][y] = 'B';
-                return adjacent(board, x, y);
-            }else{
-                board[x][y] = Character.forDigit(mines, 10);
-            }
-        }
-        return board;
+private int x = 0, y = 0;
+private int cB(char[][] B,int i,int j){
+    int count = 0;
+    if(j > 0){
+        if(i > 0 && B[i - 1][j - 1] == 'M') count++;
+        if(B[i][j - 1] == 'M') count++;
+        if(i < x && B[i + 1][j - 1] == 'M') count++;
     }
-    private static int numMines(char[][] board, int row, int col){
-        int mines = 0;
-        //top left
-        if(row-1 >= 0 && col-1>=0){
-            if(board[row-1][col-1] == 'M'){
-                mines++;
-            }
-        }
-        //top
-        if(row-1 >= 0){
-            if(board[row-1][col] == 'M'){
-                mines++;
-            }
-        }
-        //top right
-        if(row-1>=0 && col+1< board[0].length){
-            if(board[row-1][col+1] == 'M'){
-                mines++;
-            }
-        }
-        //right
-        if(col+1< board[0].length){
-            if(board[row][col+1] == 'M'){
-                mines++;
-            }
-        }
-        //bottom right 
-        if(row+1<board.length && col+1< board[0].length){
-            if(board[row+1][col+1] == 'M'){
-                mines++;
-            }
-        }
-        //bottom
-        if(row+1<board.length){
-            if(board[row+1][col] == 'M'){
-                mines++;
-            }
-        }
-        //bottom left
-        if(row+1<board.length && col-1>=0){
-            if(board[row+1][col-1] == 'M'){
-                mines++;
-            }
-        }
-        //left
-        if(col-1>=0){
-            if(board[row][col-1] == 'M'){
-                mines++;
-            }
-        }
-        return mines;
+    if(i > 0 && B[i - 1][j] == 'M') count++;
+    if(j < y){
+        if(i > 0 && B[i - 1][j + 1] == 'M') count++;
+        if(B[i][j + 1] == 'M') count++;
+        if(i < x && B[i + 1][j + 1] == 'M') count++;
     }
-    private char[][] adjacent(char[][] board, int row, int col){
-        //top left
-        if(row-1 >= 0 && col-1>=0){
-            int[] clicks = {row-1, col-1};
-            this.updateBoard(board, clicks);
-        }
-        //top
-        if(row-1 >= 0){
-            int[] clicks = {row-1, col};
-            this.updateBoard(board, clicks);
-        }
-        //top right
-        if(row-1>=0 && col+1< board[0].length){
-            int[] clicks = {row-1, col+1};
-            this.updateBoard(board, clicks);
-        }
-        //right
-        if(col+1< board[0].length){
-            int[] clicks = {row, col+1};
-            this.updateBoard(board, clicks);
-        }
-        //bottom right 
-        if(row+1<board.length && col+1< board[0].length){
-            int[] clicks = {row+1, col+1};
-            this.updateBoard(board, clicks);
-        }
-        //bottom
-        if(row+1<board.length){
-            int[] clicks = {row+1, col};
-            this.updateBoard(board, clicks);
-        }
-        //bottom left
-        if(row+1<board.length && col-1>=0){
-            int[] clicks = {row+1, col-1};
-            this.updateBoard(board, clicks);
-        }
-        //left
-        if(col-1>=0){
-            int[] clicks = {row, col-1};
-            this.updateBoard(board, clicks);
-        }
-        return board;
+    if(i < x && B[i + 1][j] == 'M') count++;
+    return count;
+}
+private void uB(char[][] B, int i, int j){
+    if(i<0 || j<0 || i>x || j>y || B[i][j] != 'E')
+        return;
+    int count = cB(B, i, j);
+    if(count != 0){
+        B[i][j] = (char)(48 + count);
+        return;
     }
+    B[i][j] = 'B';
+    uB(B, i - 1, j - 1);
+    uB(B, i - 1, j);
+    uB(B, i - 1, j + 1);
+    uB(B, i, j - 1);
+    uB(B, i, j + 1);
+    uB(B, i + 1, j - 1);
+    uB(B, i + 1, j);
+    uB(B, i + 1, j + 1);
+}
+public char[][] updateBoard(char[][] B, int[] C) {
+    x = B.length - 1;
+    y = B[0].length - 1;
+    if(B[C[0]][C[1]] == 'M'){
+        B[C[0]][C[1]] = 'X';
+        return B;
+    }
+    uB(B, C[0], C[1]);
+    return B;
+}
 }
