@@ -1,17 +1,17 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        LinkedHashMap<Integer, Integer> set = new LinkedHashMap<>();
-        for(int i = 0; i < nums.length; i++){
-            set.put(nums[i], set.getOrDefault(nums[i], 0)+1);
-        }
-        int i = 0;
+        LinkedHashMap<Integer, Integer> map = new LinkedHashMap<>();
+        int j = 0;
         int size = 0;
-        for(int num: set.keySet()){
-            int reps = set.get(num);
-            size++;
-            nums[i++] = num;
-            if(reps >= 2){
-                nums[i++] = num;
+        for(int i = 0; i < nums.length; i++){
+            int curr = nums[i];
+            if(map.getOrDefault(curr, 0) == 2){
+                while(nums[i++] != curr){
+                }
+                i--;
+            }else{
+                nums[j++] = curr;
+                map.put(curr, map.getOrDefault(curr, 0) + 1);
                 size++;
             }
         }
