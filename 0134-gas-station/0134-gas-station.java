@@ -8,20 +8,21 @@ class Solution {
         }
         if(tank < costTot){
             return -1;
-        }
+        }else{
         
-        int index = 0;
-        tank = 0;
+            int index = 0;
+            tank = 0;
 
-        for(int i = 0; i < gas.length; i++){
-            int fill = gas[i] - cost[i];
-            if(fill + tank < 0){
-                index = i + 1;
-                tank = 0;
-            }else{
-                tank += fill;
+            for(int i = 0; i < gas.length; i++){
+                int fill = gas[i] - cost[i];
+                if(fill + tank < 0){
+                    index = i + 1;
+                    tank = 0;
+                }else{
+                    tank += fill;
+                }
             }
+            return index;
         }
-        return index;
     }
 }
