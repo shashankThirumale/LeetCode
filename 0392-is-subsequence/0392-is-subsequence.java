@@ -9,9 +9,9 @@ class Solution {
             }
             if(j < t.length() && s.charAt(i) == t.charAt(j)){
                 count++;
+                j++;
             }
             i++;
-            j++;
         }
         return count == s.length();
     }
