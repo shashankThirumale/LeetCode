@@ -5,17 +5,19 @@ class Solution {
             if(strs[i].length()<small.length())
                 small = strs[i];
         }
-        String lar = "";
+        StringBuilder lar = new StringBuilder();
         for(int k = 0; k<small.length(); k++){
             boolean all = true;
-            String curr = small.substring(0,k+1);
+            char curr = small.charAt(k);
             for(int j = 0; j<strs.length; j++){
-                if(strs[j].indexOf(curr) != 0)
+                if(strs[j].charAt(k) != curr)
                     all = false;
             }
             if(all)
-                lar = curr;
+                lar.append(curr);
+            else
+                break;
         }
-        return lar;
+        return lar.toString();
     }
 }
