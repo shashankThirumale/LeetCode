@@ -1,13 +1,21 @@
 class Solution {
     public int integerReplacement(long n) {
-        long num = (long)n;
-        if(n == 1){
-            return 0;
+        HashMap<Long, Integer> map = new HashMap<>();
+        map.put((long)1, 0);
+        return helper(n, map);
+    }
+    private int helper(long n, HashMap<Long, Integer> map){
+        if(map.containsKey(n)){
+            return map.get(n);
         }
         if(n%2 == 0){
-            return 1 + integerReplacement(n/2);
+            int count = 1 + helper(n/2, map);
+            map.put(n, count);
+            return count;
         }else{
-            return 1 + Math.min(integerReplacement(n+1), integerReplacement(n-1));
+            int count = 1+Math.min(helper(n-1, map), helper(n+1, map));
+            map.put(n, count);
+            return count;
         }
     }
     
