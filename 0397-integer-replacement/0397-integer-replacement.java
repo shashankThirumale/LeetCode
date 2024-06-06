@@ -1,5 +1,5 @@
 class Solution {
-    public int integerReplacement(long n) {
+    public int integerReplacement(int n) {
         HashMap<Long, Integer> map = new HashMap<>();
         map.put((long)1, 0);
         return helper(n, map);
