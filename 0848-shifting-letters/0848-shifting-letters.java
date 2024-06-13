@@ -10,13 +10,12 @@ class Solution {
         char[] arr = s.toCharArray();
 
         for(int i = 0; i < arr.length; i++){
-            long shift = shifts[i]%26;
-            if(shift > 'z' - arr[i]){
-                shift -= 'z' - arr[i] +1;
+            if(shifts[i] > 'z' - arr[i]){
+                shifts[i] -= 'z' - arr[i] +1;
                 arr[i] = 'a';
             }
             
-            arr[i] = (char)((int)arr[i]+shift);
+            arr[i] = (char)((int)arr[i]+shifts[i]);
         }
         return String.valueOf(arr);
     }
