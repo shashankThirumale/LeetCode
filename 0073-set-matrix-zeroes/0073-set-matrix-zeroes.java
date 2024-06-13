@@ -1,32 +1,41 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
-        HashSet<Integer> rows = new HashSet<>();
-        HashSet<Integer> cols = new HashSet<>();
-        for(int row = 0; row < matrix.length; row++){
-            for(int col = 0; col < matrix[0].length; col++){
-                if(matrix[row][col] == 0){
-                    rows.add(row);
-                    break;
-                }
-            }
+        int n = matrix.length;
+    int m = matrix[0].length;
+    
+    int col0 = 1;
+    for(int i = 0; i < n; i++){
+      for(int j = 0; j < m; j++){
+        if(matrix[i][j] == 0){
+          matrix[i][0] = 0;
+
+          if(j != 0){
+            matrix[0][j] = 0;
+          }else{
+            col0 = 0;
+          }
         }
-        for(int col = 0; col < matrix[0].length; col++){
-            for(int row = 0; row < matrix.length; row++){
-                if(matrix[row][col] == 0){
-                    cols.add(col);
-                    break;
-                }
-            }
+      }
+    }
+
+    for(int i = 1; i < n; i++){
+      for(int j = 1; j < m; j++){
+        if(matrix[i][0] == 0 || matrix[0][j] == 0){
+          matrix[i][j] = 0;
         }
-        for(int row: rows){
-            for(int col = 0; col < matrix[0].length; col++){
-                matrix[row][col] = 0;
-            }
-        }
-        for(int col: cols){
-            for(int row = 0; row < matrix.length; row++){
-                matrix[row][col] = 0;
-            }
-        }
+      }
+    }
+
+    if(matrix[0][0] == 0){
+      for(int j = 0; j < m; j++){
+        matrix[0][j] = 0;
+      }
+    }
+
+    if(col0 == 0){
+      for(int i = 0; i < n; i++){
+        matrix[i][0] = 0;
+      }
+    }
     }
 }
