@@ -1,10 +1,9 @@
 class Solution {
-    public String shiftingLetters(String s, int[] shif) {
-        long total = 0;
-        long[] shifts = new long[shif.length];
+    public String shiftingLetters(String s, int[] shifts) {
+        int total = 0;
         for(int i = shifts.length-1; i > -1; i--){
-            long temp = shif[i]+total;
-            shifts[i] = shif[i]+total;
+            int temp = (shifts[i]+total)%26;
+            shifts[i] = temp;
             total = temp;
         }
 
