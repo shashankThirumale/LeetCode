@@ -3,7 +3,6 @@ class Solution {
     public boolean isPalindrome(String s) {
         int l = 0;
       int r = s.length()-1;
-      s = s.toLowerCase();
 
       while(l < r){
         boolean bothAlpha = true;
@@ -18,7 +17,7 @@ class Solution {
         }
 
         if(bothAlpha){
-          if(s.charAt(l) != s.charAt(r)){
+          if(Character.toLowerCase(s.charAt(l)) != Character.toLowerCase(s.charAt(r))){
             return false;
           }
           r--;
