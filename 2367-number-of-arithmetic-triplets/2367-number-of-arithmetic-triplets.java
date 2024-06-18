@@ -4,14 +4,11 @@ class Solution {
         HashSet<Integer> set = new HashSet<>();
         for(int n: nums){
             set.add(n);
-        }
-        
-        for(int i = nums.length-1; i >= 0; i--){
-            int num = nums[i];
-            if(set.contains(num-diff) && set.contains(num-diff-diff)){
+            if(set.contains(n-diff) && set.contains(n-diff-diff)){
                 count++;
             }
         }
+        
         return count;
     }
     /*
