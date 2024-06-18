@@ -17,7 +17,7 @@ class Solution {
           bothAlpha = false;
         }
 
-        if(bothAlpha == true){
+        if(bothAlpha){
           if(s.charAt(l) != s.charAt(r)){
             return false;
           }
