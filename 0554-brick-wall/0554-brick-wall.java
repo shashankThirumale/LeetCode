@@ -8,9 +8,10 @@ class Solution {
             int count = 0;
             
             for(int j = 0; j < curr.size()-1; j++){
+                int check = 0;
                 count += curr.get(j);
-                map.put(count, map.getOrDefault(count, 0)+1);
-                greatest = Math.max(greatest, map.get(count));
+                map.put(count, check = map.getOrDefault(count, 0)+1);
+                greatest = Math.max(greatest, check);
             }
             
         }
