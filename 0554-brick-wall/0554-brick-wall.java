@@ -23,8 +23,14 @@ class Solution {
     
     /*
     - We go through reach row and determine where all of the edges are. 
-    - 
+    Map to keep tracks of repitions of all of the gaps
     for(rows)
-        map.put()
+        keep track of how far we are from teh start
+        go through the specific row
+            update the map for that specific gap (use variable above to keep track how far the gap is)
+            
+    return the most common gap
+        
+    
     */
 }
